@@ -39,13 +39,13 @@ const client = new Client({
 
 Check following storage adapter docs for any extra options.
 
-| Database   | Adapter                                                       |
-| ---------- | ------------------------------------------------------------- |
-| Redis      | [@keyv/redis](https://github.com/lukechilds/keyv-redis)       |
-| MongoDB    | [@keyv/mongo](https://github.com/lukechilds/keyv-mongo)       |
-| SQLite     | [@keyv/sqlite](https://github.com/lukechilds/keyv-sqlite)     |
-| PostgreSQL | [@keyv/postgres](https://github.com/lukechilds/keyv-postgres) |
-| MySQL      | [@keyv/mysql](https://github.com/lukechilds/keyv-mysql)       |
+| Database   | Adapter                                                                           |
+| ---------- | ----------------------------------------------------------------------------------|
+| Redis      | [@keyv/redis](https://github.com/jaredwray/keyv/tree/master/packages/redis)       |
+| MongoDB    | [@keyv/mongo](https://github.com/jaredwray/keyv/tree/master/packages/mongo)       |
+| SQLite     | [@keyv/sqlite](https://github.com/jaredwray/keyv/tree/master/packages/sqlite)     |
+| PostgreSQL | [@keyv/postgres](https://github.com/jaredwray/keyv/tree/master/packages/postgres) |
+| MySQL      | [@keyv/mysql](https://github.com/jaredwray/keyv/tree/master/packages/mysql)       |
 
 ## Caching Duration
 
