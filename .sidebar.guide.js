@@ -10,6 +10,7 @@ const sidebars = {
     { type: 'doc', id: 'internal-caching' },
     { type: 'doc', id: 'advanced-usage' },
     { type: 'doc', id: 'custom-events' },
+    { type: 'doc', id: 'access-raw-data' },
   ],
 };
 

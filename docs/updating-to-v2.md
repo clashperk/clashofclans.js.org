@@ -59,29 +59,35 @@ The new method `client.getCurrentWar()` returns info about currently running war
 
 ### Error Handling
 
-Additional properties `data.ok` and `data.statusCode` have been removed from class based objects. Now use `try {} catch {}` block to handle errors.
+:::caution
+Additional property `data.ok` has been removed from class based objects. Now use `try {} catch {}` block to handle errors.
+
+> However, `data.ok` is still available for RESTManager, [check this guide](/guide/access-raw-data#easy-access) to know more.
+:::
 
 ```js
 const { HTTPError } = require('clashofclans.js');
 
-try {
-    const clan = await client.getClan('#2PP');
-} catch (error) {
-    if (error instanceof HTTPError && error.status === 404) {
-        console.log('Clan Not Found.');
+(async () => {
+    try {
+        const clan = await client.getClan('#2PP');
+    } catch (error) {
+        if (error instanceof HTTPError && error.status === 404) {
+            console.log('Clan Not Found.');
+        }
     }
-}
 
-try {
-    const data = await client.getClanWar('#2PP');
-} catch (error) {
-    if (error instanceof HTTPError && error.reason === 'notFound') {
-        console.log('Clan Not Found.');
+    try {
+        const data = await client.getClanWar('#2PP');
+    } catch (error) {
+        if (error instanceof HTTPError && error.reason === 'notFound') {
+            console.log('Clan Not Found.');
+        }
+        if (error instanceof HTTPError && error.reason === 'notInWar') {
+            console.log('Clan is not in War.');
+        }
     }
-    if (error instanceof HTTPError && error.reason === 'notInWar') {
-        console.log('Clan is not in War.');
-    }
-}
+})();
 ```
 
 :::info
@@ -90,7 +96,7 @@ The `HTTPError` class is a custom error class that is thrown when the API return
 Expected values for `HTTPError.reason` are `notFound`, `notInWar`, `accessDenied`, `accessDenied.invalidIp`, `privateWarLog`, `badRequest`, `requestThrottled`, `inMaintenance`, `requestAborted`, and `unknownException`.
 :::
 
-### Other Changes
+## Other Changes
 
 -   To make things simpler `client.verifyPlayerToken()` now returns a boolean value.
 
