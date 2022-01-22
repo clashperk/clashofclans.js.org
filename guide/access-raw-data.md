@@ -21,8 +21,7 @@ const client = new Client({ keys: [] });
 })();
 ```
 
-### Easy Access
-
+:::info
 Set `rejectIfNotValid` to `false` to handle raw data without `try {} catch {}` block.
 
 ```ts
@@ -37,3 +36,5 @@ const rest = new RESTManager({ rejectIfNotValid: false, keys: [] });
     }
 })();
 ```
+
+:::
