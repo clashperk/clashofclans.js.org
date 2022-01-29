@@ -2,8 +2,12 @@ name: CI
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        required: true
+        description: The git ref to build.
+
   push:
-    branches: [master]
 
 jobs:
   build:
@@ -46,6 +50,7 @@ jobs:
           echo "- [clashperk/clashofclans.js.org@$(git rev-parse --short HEAD)](https://github.com/clashperk/clashofclans.js.org/commit/$(git rev-parse HEAD))" >> build/README.md
 
       - name: Commit
+        if: github.event_name == 'push' || github.event.inputs.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           folder: build
