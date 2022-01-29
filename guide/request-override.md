@@ -25,7 +25,7 @@ const client = new Client({
 
     await client.getPlayer('#2PP', { ignoreRateLimit: true }); // no delay between requests
 
-    // this endpoint extremely slow, so we need to override the timeout
+    // this endpoint is extremely slow, so we need to override the timeout
     await client.getSeasonRankings('2021-12', { restRequestTimeout: 0 }); // no timeout
 })();
 ```
