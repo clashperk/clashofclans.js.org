@@ -149,7 +149,7 @@ const config = {
       colorMode: {
         defaultMode: 'dark'
       },
-      metadatas: [
+      metadata: [
         { name: 'theme-color', content: '#5970C1' },
         { property: 'og:title', content: site.title },
         { property: 'og:description', content: site.description },
