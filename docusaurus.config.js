@@ -44,13 +44,13 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       hideableSidebar: false,
-      announcementBar: {
-        id: 'wip',
-        content: '[WIP] Welcome to v2.0.0 documentation. For old v1.5.5 docs, visit <a target="_blank" href="https://www.npmjs.com/package/clashofclans.js/v/1.5.5">NPM</a>',
-        backgroundColor: '#FAFBFC',
-        textColor: '#091E42',
-        isCloseable: true
-      },
+      // announcementBar: {
+      //   id: 'wip',
+      //   content: '',
+      //   backgroundColor: '#FAFBFC',
+      //   textColor: '#091E42',
+      //   isCloseable: true
+      // },
       navbar: {
         hideOnScroll: true,
         title: 'clashofclans.js',

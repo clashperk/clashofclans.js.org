@@ -49,8 +49,7 @@ jobs:
           echo "- [clashperk/clashofclans.js@$(git rev-parse --short HEAD:lib)](https://github.com/clashperk/clashofclans.js/commit/$(git rev-parse HEAD:lib))" >> build/README.md
           echo "- [clashperk/clashofclans.js.org@$(git rev-parse --short HEAD)](https://github.com/clashperk/clashofclans.js.org/commit/$(git rev-parse HEAD))" >> build/README.md
 
-      - name: Commit
-        if: github.event_name == 'push' || github.event.inputs.ref == 'refs/heads/main'
+      - name: Commit Changes
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           folder: build

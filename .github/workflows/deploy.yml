@@ -2,11 +2,8 @@ name: CI
 
 on:
   workflow_dispatch:
-    inputs:
-      ref:
-        required: true
-        description: The git ref to build.
   push:
+  pull_request:
 
 jobs:
   build:
