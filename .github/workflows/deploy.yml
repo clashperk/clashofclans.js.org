@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        required: true
+        description: The git ref to build.
+  push:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Update Submodule
+        run: git clone -b main https://github.com/clashperk/clashofclans.js.git lib
+
+      - name: Copy CHANGELOG.md
+        run: cp lib/CHANGELOG.md docs/changelog.md
+
+      - name: Install
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          working-directory: ./build
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
