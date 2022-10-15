@@ -20,6 +20,9 @@ jobs:
       - name: Copy CHANGELOG.md
         run: cp lib/CHANGELOG.md docs/changelog.md
 
+      - name: Copy README.md
+        run: cp lib/README.md docs/intro.md
+
       - name: Install
         run: yarn
 
