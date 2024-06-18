@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkclashofclans_js_org=self.webpackChunkclashofclans_js_org||[]).push([[6538],{7085:s=>{s.exports=JSON.parse('{"name":"docusaurus-theme-search-algolia","id":"default"}')}}]);
