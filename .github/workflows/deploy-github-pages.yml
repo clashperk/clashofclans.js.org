@@ -1,22 +1,27 @@
-name: CI
+name: deploy-github-pages
 
 on:
-  workflow_dispatch:
-    inputs:
-      ref:
-        required: true
-        description: The git ref to build.
-
   push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build
+  generate-docs:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
 
       - name: Update Submodule
         run: git pull --recurse-submodules && git submodule update --remote --recursive --init
@@ -60,10 +65,23 @@ jobs:
           echo "- [clashperk/clashofclans.js@$(git rev-parse --short HEAD:lib)](https://github.com/clashperk/clashofclans.js/commit/$(git rev-parse HEAD:lib))" >> build/README.md
           echo "- [clashperk/clashofclans.js.org@$(git rev-parse --short HEAD)](https://github.com/clashperk/clashofclans.js.org/commit/$(git rev-parse HEAD))" >> build/README.md
 
-      - name: Commit Changes
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
         with:
-          folder: build
-          branch: gh-pages
-          single-commit: true
-          commit-message: Docs build
+          source: ./build
+          destination: ./_site
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+
+  publish-github-pages:
+    needs: generate-docs
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

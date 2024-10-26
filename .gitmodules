@@ -1,4 +1,4 @@
 [submodule "lib"]
 	path = lib
-	branch = stable
+	branch = main
 	url = https://github.com/clashperk/clashofclans.js

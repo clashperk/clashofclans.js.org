@@ -43,7 +43,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      hideableSidebar: false,
+      // hideableSidebar: false,
       // announcementBar: {
       //   id: 'wip',
       //   content: '',
@@ -154,7 +154,12 @@ const config = {
         { property: 'og:title', content: site.title },
         { property: 'og:description', content: site.description },
         { name: 'google-site-verification', content: '_9bt5DMtLPf2684c1fw3ecwUK4Hvtx1y0JuYTSU3Mak' }
-      ]
+      ],
+      docs: {
+        sidebar: {
+          hideable: false
+        }
+      }
     }),
 
   plugins: [

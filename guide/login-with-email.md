@@ -14,6 +14,10 @@ import { Client } from 'clashofclans.js';
 const client = new Client();
 
 (async function () {
-    await client.login({ email: '***', password: '***' });
+    await client.login({ email: '***', password: '***', keyName: "YourKeyName" });
 })();
 ```
+
+:::info
+Use a unique key name per-project to avoid deletion of the keys.
+:::

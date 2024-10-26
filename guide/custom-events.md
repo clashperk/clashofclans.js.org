@@ -3,11 +3,18 @@ slug: custom-events
 title: Custom Events
 ---
 
+:::caution
+The API lacks socket-based real-time events. It is recommended to implement your own custom polling system.
+Pull data at specified intervals, compare with previous values, and emit events on change.
+Consider using Node.js clusters for efficient parallel processing.
+
+:::
+
 Custom events give you absolute freedom in your creativity. Let's look at a simple example which emits a custom event on clan description change.
 
 ```ts
 import { Client } from 'clashofclans.js';
-const client = new Client({ keys: ['***'], cache: true });
+const client = new PollingClient({ keys: ['***'] });
 
 client.events.addClans(['#8P2QG08P']);
 client.events.setClanEvent({
