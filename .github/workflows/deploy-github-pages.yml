@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -24,13 +24,17 @@ jobs:
           fetch-depth: 0
 
       - name: Update Submodule
-        run: git pull --recurse-submodules && git submodule update --remote --recursive --init
+        run: git submodule init && git submodule update --remote
 
       - name: Commit Changes
         uses: EndBug/add-and-commit@v7
         with:
           message: 'chore: update git submodules'
           default_author: github_actions
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Switch to Latest Tag
+        run: cd lib && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 
       - name: Copy CHANGELOG.md
         run: cp lib/CHANGELOG.md docs/changelog.md
@@ -56,14 +60,6 @@ jobs:
 
       - name: Build
         run: yarn build
-
-      - name: README.md
-        run: |
-          echo "# Documentation Branch" >> build/README.md
-          echo "This branch hosts the documentation files used for https://clashofclans.js.org/. No manual commits should ever need to be done to this branch." >> build/README.md
-          echo "## Commits" >> build/README.md
-          echo "- [clashperk/clashofclans.js@$(git rev-parse --short HEAD:lib)](https://github.com/clashperk/clashofclans.js/commit/$(git rev-parse HEAD:lib))" >> build/README.md
-          echo "- [clashperk/clashofclans.js.org@$(git rev-parse --short HEAD)](https://github.com/clashperk/clashofclans.js.org/commit/$(git rev-parse HEAD))" >> build/README.md
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
