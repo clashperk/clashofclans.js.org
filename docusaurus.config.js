@@ -76,10 +76,6 @@ const config = {
                 label: package.version,
                 href: 'https://clashofclans.js.org/docs',
               },
-              {
-                href: 'https://www.npmjs.com/package/clashofclans.js/v/1.5.5',
-                label: '1.5.5',
-              }
             ]
           },
           {

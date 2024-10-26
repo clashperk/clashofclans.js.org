@@ -50,11 +50,6 @@ jobs:
           echo "---" >> docs/intro.md
           cat lib/README.md >> docs/intro.md
         
-      - name: Clone Assets
-        run: |
-          git clone https://github.com/Statscell/clash-assets.git
-          cp clash-assets/troops/icons/* -r static/assets
-
       - name: Install
         run: yarn
 
